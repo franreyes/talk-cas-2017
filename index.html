@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h2>Values and principles</h2>
+                    <p>in software design.</p>
+                    <img src="cas2017.png" width="300"/>
+                </section>
+
+				<section>
+                    <div>
+                        <span style="margin-right: 70px; margin-bottom: 30px">
+                            <img src="codesai.jpeg" width="320"/>
+                        </span>
+                        <span style="margin-right: 70px">
+                            <img src="agilecanarias.jpeg" width="160"/>
+                        </span>
+                    </div>
+                    <span style="margin-right: 90px; margin-bottom: 30px">
+                     <h3 style="display: inline">Fran Reyes -</h3>
+                    <span>
+                        <img src="twitter.png" width="80px" style="vertical-align: middle; margin-bottom: 30px"/>
+                        <h3 style="display: inline">fran_reyes</h3>
+                    </span>
+                </section>
+
+                <section><h3>Values, principles and patterns form a balanced expression of a <span style="color: rgb(128, 85,196)">style of development.</span></h3></section>
+
+				<section>
+                    <h3>Differents values and differents principles will lead to different styles.</h3>
+                </section>
+
+                <section>
+                    <blockquote>&ldquo;Any fool can write code that a computer can understand. Good programmers write code that humans can understand.&rdquo;</blockquote>
+                    <p>San Martin de Fowler</p>
+                </section>
+
+                <section>
+                    <ul style="list-style-type: none">
+                        <li>Patterns describe what to do.</li> 
+                        <li>Values provide motivation.</li> 
+                        <li>Principles help translate motive into action.</li>
+                    </ul>
+                    <p style="color: grey; font-size: 30px" class="fragment">Principles bridge values (universal but often difficult to apply directly) and patterns (which are clear to apply but specific).</p>
+                </section>
+
+				<section>
+                    <h3>Communication, Simplicity and Flexibility</h3>
+                    <img src="implementation-patterns.jpg"/>
+                </section>
+
+				<section>
+                    <h3>Software Economics</h3>
+                    <img src="money.gif" />
+                </section>
+
+                <section>
+                    <h3><b>Communication</b></h3> 
+                    <p>Code communicates well when a reader can understand it, modify it, or use it.</p> 
+                </section>
+
+				<section>
+				    <section>
+                    <p>What is the purpose of this code?</p> 
+                    <pre><code data-trim data-noescape>
+                            public List&lt;int&gt; getThem(){
+                                var list1 = new List&lt;int&gt;();
+                                forEach(var x : TheList){
+                                    if(x.Status == 4) {
+                                        list1.add(x.Id);
+                                    }
+                                }
+                                return list1;
+                             }
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p >What kinds of things are in the List?</p> 
+                    <pre class="fragment"><code data-trim data-noescape>
+									public List&lt;int&gt; getThem(){
+										var list1 = new List&lt;int&gt;();
+										forEach(var stockVehicle : StockVehicles){
+											if(stockVehicle.Status == 4) {
+												list1.add(stockVehicle.Id);
+											}
+										}
+										return list1;
+									}
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p >What is the significance of the value 4?</p> 
+                    <pre class="fragment"><code data-trim data-noescape>
+									public List&lt;int&gt; getThem(){
+										var list1 = new List&lt;int&gt;();
+										forEach(var stockVehicle : StockVehicles){
+											if(stockVehicle.Status == Blocked) {
+												list1.add(stockVehicle.Id);
+											}
+										}
+										return list1;
+									}
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>How would I use the list being returned?</p> 
+                    <pre class="fragment"><code data-trim data-noescape>
+									public List&lt;int&gt; getThem(){
+										var blockedVehicleIds = new List&lt;int&gt;();
+										forEach(var stockVehicle : StockVehicles){
+											if(stockVehicle.Status == Blocked) {
+												blockedVehicleIds.add(stockVehicle.Id);
+											}
+										}
+										return blockedVehicleIds;
+									}
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>What paradigm am I working on?</p> 
+                    <pre class="fragment"><code data-trim data-noescape>
+									public List&lt;int&gt; getThem(){
+										var blockedVehicleIds = new List&lt;int&gt;();
+										forEach(var stockVehicle : StockVehicles){
+											if(stockVehicle.isBlocked()) {
+												blockedVehicleIds.add(stockVehicle.Id);
+											}
+										}
+										return blockedVehicleIds;
+									}
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Could be this code close to that ordinary written prose?</p> 
+                    <pre class="fragment"><code data-trim data-noescape>
+                                    public List&lt;int&gt; getThem(){
+                                        StockVehicles
+                                            .Where(vehicle => vehicle.isBlocked())
+                                            .Select(vehicle => vehicle.Id)
+                                            .ToList();
+                                    }
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h3><b>Simplicity</b></h3>
+                    <p>Eliminating excess complexity enables those reading, using, and modifiying programs to understand them more quickly.</p> 
+                    <p class="fragment" style="color: rgb(128, 85,196)">Essential vs accidental complexity</p>
+                </section>
+
+                <section>
+                    <section>
+                        <h3><b>Simplicity</b></h3>
+                        <p>Sometimes, however, I find a simplication that would make a program harder to understand. I choose <span style="color: rgb(128, 85,196)">communication over simplicity</span> in these cases.</p>
+                    </section>
+				    <section>
+                    <p>Why the expected result is 49.25?</p> 
+                    <pre><code data-trim data-noescape>
+                    bank.addRate("USD", "GBP", rate);
+                    bank.commission(commission);
+                    Money result = bank.convert(new Note(100, "USD"), "GBP");
+
+                    assertEquals(new Note(49.25, "GBP"), result);
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Be explicit, although a bit of coupling maybe is the comparative cost</p> 
+                    <pre><code data-trim data-noescape>
+                    bank.addRate("USD", "GBP", rate);
+                    bank.commission(commission);
+                    Money result = bank.convert(new Note(100, "USD"), "GBP");
+
+                    assertEquals(new Note(100 / rate 
+                                 * (1 - commission, "GBP"), result);
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Turning it into a property based test, increase the benefits</p> 
+                    <pre><code data-trim data-noescape>
+                    forAll(doublesGreaterThan(0)) { rate ->
+                      forAll(doublesGreaterThan(0)) { commission ->
+                        bank.addRate(USD, GBP, rate);
+                        bank.commission(commission);
+
+                        assertThat(bank.convert(Note(100, USD), GBP),
+                            equalTo(Note(100 / rate * (1 - commission), GBP)))
+                      }
+                    }
+                    </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <h3><b>Simplicity</b></h3>
+                    <p>Simplicity is in the eye of the beholder. What is simple to an expert programmer, <span style="color: rgb(128, 85,196)">familiar</span> with the power tools of the craft, might be overwhelmingly complex to a beginner.</p>
+                </section>
+                
+                <section>
+                    <h3><b>Flexibility</b></h3>
+                    <p>Design for the future. Change is expensive. Make it cheap by anticipating it.</p>
+                    <p class="fragment">
+                        <img src="wrong1.gif" width="300px"/>
+                        <img src="wrong2.gif" width="360px"/>
+                    </p>
+                </section>
+
+                <section>
+                    <h3><b>Flexibility</b></h3>
+                    <p>Flexibility is the justification used for the most ineffective coding and design practices.</p>
+                    <p class="fragment">Flexibility can come at the cost of increased complexity.</p>
+                </section>
+
+                <section>
+                    <section>
+                        <h3><b>Flexibility</b></h3>
+                        <p><a href="https://medium.com/@antoniojesussg96/implementando-nuestro-propio-motor-de-reglas-java-da7c778ff1f7">Fizz Buzz Kata with engine rules</a></p>
+                    </section>
+
+                    <section>
+                        <p><img src="fizzBuzzKataRuleEngine.png" width="200%" /></p>
+                    </section>
+                </section>
+
+
+                <section>
+                    <h3><b>Flexibility</b></h3>
+                    <blockquote>&ldquo;That's why flexibility of simplicity and extensive tests is more effective that the flexibility offered by speculated design.&rdquo;</blockquote>
+                </section>
+
+                <section>
+                    <h3><b>Flexibility</b></h3>
+                    <blockquote>&ldquo;Paradox, by not considering the future of your code you make your code much more likely to be adaptable in the future&rdquo;</blockquote>
+                </section>
+
+                <section>
+                    <h3><b>Principles</b></h3>
+                    <ul>
+                        <li>Local consequences</li>
+                        <li>Minimize Repetition</li>
+                        <li>Logic and Data Together</li>
+                        <li>Declarative Expression</li>
+                        <li>Symmetry</li>
+                        <li>Rate of Change</li>
+                    </ul>
+                    <p></p>
+                </section>
+                
+                <section>
+                    <h3><b>Local consequences</b></h3>
+                    <p>If a change here can cause a problem there, then the cost of change rise dramatically</p>
+                    <p class="fragment">Code with mostly local consequences communicates effectively. It can be understood gradually without first having assemble an understanding of whole</p>
+                    <p style="font-size: 30px; color: grey" class="fragment">Example: change variable name of Enum in BZ has impact in front end</p>
+                </section>
+                
+                <section>
+                    <h3><b>Minimize Repetition</b></h3>
+                    <p>When you have the same code in several places, if you change one copy of the code you have to decide whether or not to change all the other copies</p>
+                </section>
+                
+                <section>
+                    <h3><b>Logic and Data Together</b></h3>
+                    <p>Put logic and data it operates on near each other</p>
+                </section>
+                
+                <section>
+                    <section>
+                        <h3><b>Declarative Expression</b></h3>
+                        <p>Express the logic describing the What you want to do and not How you want to do.</p>
+                    </section>
+				    <section>
+                    <p>Imperative expression</p> 
+                    <pre><code data-trim data-noescape>
+                                 List&lt;int&gt; results = new List&lt;int&gt;();
+                                 foreach(var num in collection)
+                                 {
+                                     if (num % 2 != 0)
+                                               results.Add(num);
+                                 }
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Declarative expression</p> 
+                    <pre><code data-trim data-noescape>
+                    var results = collection.Where( num => num % 2 != 0);
+                    </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h3><b>Symmetry</b></h3>
+                        <p>Symmetry in code is where the same idea is expressed the same way everywhere it appears in the code.</p>
+                        <p class="fragment">Once readers understand one half of the simmetry, they can quickly understand the other half.</p>
+                    </section>
+				    <section>
+                    <p></p> 
+                    <pre><code data-trim data-noescape>
+                      offer.assignCustomer(customer);
+                      offer.status = Offer.Accepted;
+                      offer.changeLastModifiedDate();
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p></p> 
+                    <pre><code data-trim data-noescape>
+                      offer.assignCustomer(customer);
+                      offer.accept();
+                      offer.changeLastModifiedDate();
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p></p> 
+                    <pre><code data-trim data-noescape>
+                      offer.assignCustomer(customer);
+                      offer.accept();
+                    </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3><b>Rate of change</b></h3>
+                        <p>Put logic or data that changes at the same rate together and separate logic or data that changes at different rates</p>
+                    </section>
+				    <section>
+                    <p>Change together</p> 
+                    <pre><code data-trim data-noescape>
+                        public void setAmount(int value, string currency){
+                            this.value = value;
+                            this.currency = currency;
+                        }
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Becomes</p>
+                    <pre><code data-trim data-noescape>
+                        public void setAmount(Money value){
+                            this.value = value;
+                        }
+                    </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <h3><b>Remember!</b></h3>
+                    <blockquote>&ldquo;Programming, then, is a human task done by humans for humans.&rdquo;</blockquote>
+                    <p>Kent Beck</p>
+                </section>
+
+                <section>
+                    <p><img src="theEnd.gif"/></p>
+                    <p><img src="cas2017.png" width="300"/></p>
+                </section>
+                
+                <section>
+                    <h3>Related links</h3>
+                    <p>
+                        <a href="https://www.goodreads.com/book/show/781559.Implementation_Patterns">Implementation Patterns Book</a>
+                    </p>
+                    <p>
+                        <a href="https://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy - Rich Hickey</a>
+                    </p>
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=wn_z9aV3Kzo">Economía del software en 10 min - Artola & Guillermo</a>
+                    </p>
+                    <p>
+                        <a href="https://gist.github.com/franreyes/44b14720a4f32800df9cafee11e320ed">Communication over simpliflication example (Property based testing contribution by Nat Pryce)</a>
+                    </p>
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=6FDxbCzh2sI">Simplicidad para desarrolladores - Eduardo Ferro</a>
+                    </p>
+                    <p>
+                        <a href="https://dannorth.net/2011/01/31/whose-domain-is-it-anyway/">Chunking – or the myth of declarative - Dan North</a>
+                    </p>
+                    <p>
+                        <a href="https://www.codesai.com/2017/01/an-example-of-introducing-symmetry-to">An example of introducing symmetry to enable duplication removal - Manuel Rivero</a>
+                    </p>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
