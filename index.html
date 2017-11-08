@@ -74,8 +74,14 @@
                 </section>
 
 				<section>
-                    <h3>Software Economics</h3>
-                    <img src="money.gif" />
+                    <section>
+                        <h3>Software Economics</h3>
+                        <img src="money.gif" />
+                    </section>
+                    <section>
+                        <h3>Software Economics</h3>
+                        <p>Cost Understand + Cost Change + Cost Test + Cost Deploy
+                    </section>
                 </section>
 
                 <section>
@@ -274,7 +280,6 @@
                     <h3><b>Local consequences</b></h3>
                     <p>If a change here can cause a problem there, then the cost of change rise dramatically</p>
                     <p class="fragment">Code with mostly local consequences communicates effectively. It can be understood gradually without first having assemble an understanding of whole</p>
-                    <p style="font-size: 30px; color: grey" class="fragment">Example: change variable name of Enum in BZ has impact in front end</p>
                 </section>
                 
                 <section>
@@ -319,6 +324,15 @@
                     </section>
 				    <section>
                     <p></p> 
+                    <h3><b>Symmetry</b></h3>
+                    <pre><code data-trim data-noescape>
+                    array_map("process", array(1,2,3));
+                    array_filter(array(1,2,3), "process");
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p></p> 
+                    <h3><b>Symmetry</b></h3>
                     <pre><code data-trim data-noescape>
                       offer.assignCustomer(customer);
                       offer.status = Offer.Accepted;
@@ -327,6 +341,7 @@
                     </section>
 				    <section>
                     <p></p> 
+                    <h3><b>Symmetry</b></h3>
                     <pre><code data-trim data-noescape>
                       offer.assignCustomer(customer);
                       offer.accept();
@@ -335,6 +350,7 @@
                     </section>
 				    <section>
                     <p></p> 
+                    <h3><b>Symmetry</b></h3>
                     <pre><code data-trim data-noescape>
                       offer.assignCustomer(customer);
                       offer.accept();
@@ -395,7 +411,7 @@
                         <a href="https://www.youtube.com/watch?v=6FDxbCzh2sI">Simplicidad para desarrolladores - Eduardo Ferro</a>
                     </p>
                     <p>
-                        <a href="https://dannorth.net/2011/01/31/whose-domain-is-it-anyway/">Chunking – or the myth of declarative - Dan North</a>
+                        <a href="https://dannorth.net/2011/01/31/whose-domain-is-it-anyway/">Chunking or the myth of declarative - Dan North</a>
                     </p>
                     <p>
                         <a href="https://www.codesai.com/2017/01/an-example-of-introducing-symmetry-to">An example of introducing symmetry to enable duplication removal - Manuel Rivero</a>
