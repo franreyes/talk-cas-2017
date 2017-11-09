@@ -222,8 +222,35 @@
                 </section>
                 
                 <section>
-                    <h3><b>Simplicity</b></h3>
-                    <p>Simplicity is in the eye of the beholder. What is simple to an expert programmer, <span style="color: rgb(128, 85,196)">familiar</span> with the power tools of the craft, might be overwhelmingly complex to a beginner.</p>
+                    <section>
+                        <h3><b>Simplicity</b></h3>
+                        <p>Simplicity is in the eye of the beholder. What is simple to an expert programmer, <span style="color: rgb(128, 85,196)">familiar</span> with the power tools of the craft, might be overwhelmingly complex to a beginner.</p>
+                    </section>
+				    <section>
+                    <p>Simplicity, familiarity</p> 
+                    <pre><code data-trim data-noescape>
+                                    public List&lt;int&gt; getThem(){
+                                        StockVehicles
+                                            .Where(vehicle => vehicle.isBlocked())
+                                            .Select(vehicle => vehicle.Id)
+                                            .ToList();
+                                    }
+                    </code></pre>
+                    </section>
+				    <section>
+                    <p>Simplicity, familiarity</p> 
+                    <pre><code data-trim data-noescape>
+									public List&lt;int&gt; getThem(){
+										var blockedVehicleIds = new List&lt;int&gt;();
+										forEach(var stockVehicle : StockVehicles){
+											if(stockVehicle.isBlocked()) {
+												blockedVehicleIds.add(stockVehicle.Id);
+											}
+										}
+										return blockedVehicleIds;
+									}
+                    </code></pre>
+                    </section>
                 </section>
                 
                 <section>
@@ -383,9 +410,26 @@
                 </section>
                 
                 <section>
-                    <h3><b>Remember!</b></h3>
-                    <blockquote>&ldquo;Programming, then, is a human task done by humans for humans.&rdquo;</blockquote>
-                    <p>Kent Beck</p>
+                    <section>
+                        <h3><b>Remember!</b></h3>
+                    </section>
+                    <section>
+                        <h3><b>Communication, Simplicity & Flexibility</b></h3>
+                        <ul>
+                            <li>Local consequences</li>
+                            <li>Minimize Repetition</li>
+                            <li>Logic and Data Together</li>
+                            <li>Declarative Expression</li>
+                            <li>Symmetry</li>
+                            <li>Rate of Change</li>
+                        </ul>
+                        <p></p>
+                    </section>
+                    <section>
+                        <h3><b>Remember!</b></h3>
+                        <blockquote>&ldquo;Programming, then, is a human task done by humans for humans.&rdquo;</blockquote>
+                        <p>Kent Beck</p>
+                    </section>
                 </section>
 
                 <section>
